@@ -1,6 +1,8 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
+// import "../node_modules/hardhat/console.sol";
+
 interface IERC721 {
     function transferFrom(
         address _from,
@@ -13,7 +15,6 @@ contract Escrow {
     address public nftAddress;
     address payable public host;
     address public inspector;
-    address public lender;
 
     modifier onlyGuest(uint256 _nftID) {
         require(msg.sender == guest[_nftID], "Only guest can call this method");
@@ -40,33 +41,30 @@ contract Escrow {
     constructor(
         address _nftAddress,
         address payable _host,
-        address _inspector,
-        address _lender
+        address _inspector
     ) {
         nftAddress = _nftAddress;
         host = _host;
         inspector = _inspector;
-        lender = _lender;
     }
 
     function list(
         uint256 _nftID,
-        address _guest,
-        uint256 _purchasePrice,
-        uint256 _escrowAmount
+        uint256 _purchasePrice
     ) public payable onlyHost {
         // Transfer NFT from host to this contract
         IERC721(nftAddress).transferFrom(msg.sender, address(this), _nftID);
 
         isListed[_nftID] = true;
         purchasePrice[_nftID] = _purchasePrice;
-        escrowAmount[_nftID] = _escrowAmount;
-        guest[_nftID] = _guest;
+   
     }
 
     // Put Under Contract (only guest - payable escrow)
-    function depositEarnest(uint256 _nftID) public payable onlyGuest(_nftID) {
-        require(msg.value >= escrowAmount[_nftID]);
+    function depositEarnest(uint256 _nftID) public payable {
+        require(guest[_nftID] == address(0), "Guest already exists!");
+        require(msg.value >= purchasePrice[_nftID], "Insufficient funds!");
+        guest[_nftID] = msg.sender;
     }
 
     // Update Inspection Status (only inspector)
@@ -88,19 +86,19 @@ contract Escrow {
     // -> Require funds to be correct amount
     // -> Transfer NFT to guest
     // -> Transfer Funds to host
-    function finalizeSale(uint256 _nftID) public {
-        require(inspectionPassed[_nftID]);
-        require(approval[_nftID][guest[_nftID]]);
-        require(approval[_nftID][host]);
-        require(approval[_nftID][lender]);
-        require(address(this).balance >= purchasePrice[_nftID]);
+    function finalizeSale(uint256 _nftID) onlyGuest(_nftID) public {
+        require(inspectionPassed[_nftID], "Inspection not passed!");
+        require(approval[_nftID][guest[_nftID]], "Guest not approved!");
+        require(approval[_nftID][host], "Host not approved!");
+        require(address(this).balance >= purchasePrice[_nftID], "Insufficient funds!");
 
         isListed[_nftID] = false;
+        guest[_nftID] = msg.sender;
 
         (bool success, ) = payable(host).call{value: address(this).balance}(
             ""
         );
-        require(success);
+        require(success, "Transfer failed");
 
         IERC721(nftAddress).transferFrom(address(this), guest[_nftID], _nftID);
     }
