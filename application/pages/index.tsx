@@ -3,12 +3,12 @@ import WalletConnection from "@/components/demo/WalletConnection";
 import UserAuthentication from "@/components/demo/UserAuthentication";
 import DecentralizedStorage from "@/components/demo/DecentralizedStorage";
 import ContractInteraction from "@/components/demo/ContractInteraction";
-import { Button } from "@/components/ui/button";
-<<<<<<< Updated upstream
+
 import { set } from "zod";
-=======
-import { ListingCard } from "@/components/ListingCard";
->>>>>>> Stashed changes
+import { EventCard } from "../components/EventCard";
+import { Button, buttonVariants } from "@/components/ui/button";
+
+import Link from "next/link";
 
 const tabs = [
   { name: "Wallet Connection", component: <WalletConnection /> },
@@ -26,10 +26,13 @@ const Home: NextPage = () => {
           vibe economy{" "}
         </h1>
         <h4>Find places to stay with like-minded people.</h4>
-        <Button variant="secondary">Start Browsing</Button>
+        <Link
+          href={"/events"}
+          className={buttonVariants({ variant: "default" })}
+        >
+          Start Browsing
+        </Link>
       </div>
-
-      <ListingCard />
     </div>
   );
 };
