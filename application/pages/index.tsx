@@ -3,9 +3,12 @@ import WalletConnection from "@/components/demo/WalletConnection";
 import UserAuthentication from "@/components/demo/UserAuthentication";
 import DecentralizedStorage from "@/components/demo/DecentralizedStorage";
 import ContractInteraction from "@/components/demo/ContractInteraction";
-import { EventCard } from "../components/EventCard";
 import { Button } from "@/components/ui/button";
+<<<<<<< Updated upstream
 import { set } from "zod";
+=======
+import { ListingCard } from "@/components/ListingCard";
+>>>>>>> Stashed changes
 
 const tabs = [
   { name: "Wallet Connection", component: <WalletConnection /> },
@@ -26,7 +29,7 @@ const Home: NextPage = () => {
         <Button variant="secondary">Start Browsing</Button>
       </div>
 
-      <EventCard />
+      <ListingCard />
     </div>
   );
 };
