@@ -11,16 +11,18 @@ const tokens = (n: number) => {
 };
 
 describe("Escrow", () => {
-  let buyer: SignerWithAddress,
-    seller: SignerWithAddress,
+  let guest: SignerWithAddress,
+    guest2: SignerWithAddress,
+    host: SignerWithAddress,
+    host2: SignerWithAddress,
     inspector: SignerWithAddress,
     lender: SignerWithAddress;
 
-  let springrListing: SpringrListing, escrow: Escrow;
+  let springrListing: SpringrListing, escrow: Escrow, escrow2: Escrow;
 
   beforeEach(async () => {
     // Setup accounts
-    [buyer, seller, inspector, lender] = await ethers.getSigners();
+    [guest, guest2, host, host2, inspector, lender] = await ethers.getSigners();
 
     // Deploy Real Estate
     const SpringrListingFactory: SpringrListing__factory =
@@ -29,7 +31,14 @@ describe("Escrow", () => {
 
     // Mint
     let transaction = await springrListing
-      .connect(seller)
+      .connect(host)
+      .mint(
+        "https://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS"
+      );
+    await transaction.wait();
+
+    transaction = await springrListing
+      .connect(host2)
       .mint(
         "https://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS"
       );
@@ -39,22 +48,37 @@ describe("Escrow", () => {
     const Escrow: Escrow__factory = await ethers.getContractFactory("Escrow");
     escrow = await Escrow.deploy(
       springrListing.address,
-      seller.address,
+      host.address,
+      inspector.address,
+      lender.address
+    );
+
+    const Escrow2: Escrow__factory = await ethers.getContractFactory("Escrow");
+    escrow2 = await Escrow2.deploy(
+      springrListing.address,
+      host2.address,
       inspector.address,
       lender.address
     );
 
     // Approve Property
+    transaction = await springrListing.connect(host).approve(escrow.address, 1);
+    await transaction.wait();
+
     transaction = await springrListing
-      .connect(seller)
-      .approve(escrow.address, 1);
+      .connect(host2)
+      .approve(escrow2.address, 2);
     await transaction.wait();
 
     // List Property
     transaction = await escrow
-      .connect(seller)
-      .list(1, buyer.address, tokens(10), tokens(5));
+      .connect(host)
+      .list(1, guest.address, tokens(10), tokens(5));
     await transaction.wait();
+
+    transaction = await escrow2
+      .connect(host2)
+      .list(2, guest.address, tokens(10), tokens(5));
   });
 
   describe("Deployment", () => {
@@ -63,9 +87,9 @@ describe("Escrow", () => {
       expect(result).to.be.equal(springrListing.address);
     });
 
-    it("Returns seller", async () => {
-      const result = await escrow.seller();
-      expect(result).to.be.equal(seller.address);
+    it("Returns host", async () => {
+      const result = await escrow.host();
+      expect(result).to.be.equal(host.address);
     });
 
     it("Returns inspector", async () => {
@@ -85,9 +109,9 @@ describe("Escrow", () => {
       expect(result).to.be.equal(true);
     });
 
-    it("Returns buyer", async () => {
-      const result = await escrow.buyer(1);
-      expect(result).to.be.equal(buyer.address);
+    it("Returns guest", async () => {
+      const result = await escrow.guest(1);
+      expect(result).to.be.equal(guest.address);
     });
 
     it("Returns purchase price", async () => {
@@ -108,7 +132,7 @@ describe("Escrow", () => {
   describe("Deposits", () => {
     beforeEach(async () => {
       const transaction = await escrow
-        .connect(buyer)
+        .connect(guest)
         .depositEarnest(1, { value: tokens(5) });
       await transaction.wait();
     });
@@ -135,10 +159,10 @@ describe("Escrow", () => {
 
   describe("Approval", () => {
     beforeEach(async () => {
-      let transaction = await escrow.connect(buyer).approveSale(1);
+      let transaction = await escrow.connect(guest).approveSale(1);
       await transaction.wait();
 
-      transaction = await escrow.connect(seller).approveSale(1);
+      transaction = await escrow.connect(host).approveSale(1);
       await transaction.wait();
 
       transaction = await escrow.connect(lender).approveSale(1);
@@ -146,8 +170,8 @@ describe("Escrow", () => {
     });
 
     it("Updates approval status", async () => {
-      expect(await escrow.approval(1, buyer.address)).to.be.equal(true);
-      expect(await escrow.approval(1, seller.address)).to.be.equal(true);
+      expect(await escrow.approval(1, guest.address)).to.be.equal(true);
+      expect(await escrow.approval(1, host.address)).to.be.equal(true);
       expect(await escrow.approval(1, lender.address)).to.be.equal(true);
     });
   });
@@ -155,7 +179,7 @@ describe("Escrow", () => {
   describe("Sale", () => {
     beforeEach(async () => {
       let transaction = await escrow
-        .connect(buyer)
+        .connect(guest)
         .depositEarnest(1, { value: tokens(5) });
       await transaction.wait();
 
@@ -164,10 +188,10 @@ describe("Escrow", () => {
         .updateInspectionStatus(1, true);
       await transaction.wait();
 
-      transaction = await escrow.connect(buyer).approveSale(1);
+      transaction = await escrow.connect(guest).approveSale(1);
       await transaction.wait();
 
-      transaction = await escrow.connect(seller).approveSale(1);
+      transaction = await escrow.connect(host).approveSale(1);
       await transaction.wait();
 
       transaction = await escrow.connect(lender).approveSale(1);
@@ -175,12 +199,12 @@ describe("Escrow", () => {
 
       await lender.sendTransaction({ to: escrow.address, value: tokens(5) });
 
-      transaction = await escrow.connect(seller).finalizeSale(1);
+      transaction = await escrow.connect(host).finalizeSale(1);
       await transaction.wait();
     });
 
     it("Updates ownership", async () => {
-      expect(await springrListing.ownerOf(1)).to.be.equal(buyer.address);
+      expect(await springrListing.ownerOf(1)).to.be.equal(guest.address);
     });
 
     it("Updates balance", async () => {

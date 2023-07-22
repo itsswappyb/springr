@@ -11,17 +11,17 @@ interface IERC721 {
 
 contract Escrow {
     address public nftAddress;
-    address payable public seller;
+    address payable public host;
     address public inspector;
     address public lender;
 
-    modifier onlyBuyer(uint256 _nftID) {
-        require(msg.sender == buyer[_nftID], "Only buyer can call this method");
+    modifier onlyGuest(uint256 _nftID) {
+        require(msg.sender == guest[_nftID], "Only guest can call this method");
         _;
     }
 
-    modifier onlySeller() {
-        require(msg.sender == seller, "Only seller can call this method");
+    modifier onlyHost() {
+        require(msg.sender == host, "Only host can call this method");
         _;
     }
 
@@ -33,39 +33,39 @@ contract Escrow {
     mapping(uint256 => bool) public isListed;
     mapping(uint256 => uint256) public purchasePrice;
     mapping(uint256 => uint256) public escrowAmount;
-    mapping(uint256 => address) public buyer;
+    mapping(uint256 => address) public guest;
     mapping(uint256 => bool) public inspectionPassed;
     mapping(uint256 => mapping(address => bool)) public approval;
 
     constructor(
         address _nftAddress,
-        address payable _seller,
+        address payable _host,
         address _inspector,
         address _lender
     ) {
         nftAddress = _nftAddress;
-        seller = _seller;
+        host = _host;
         inspector = _inspector;
         lender = _lender;
     }
 
     function list(
         uint256 _nftID,
-        address _buyer,
+        address _guest,
         uint256 _purchasePrice,
         uint256 _escrowAmount
-    ) public payable onlySeller {
-        // Transfer NFT from seller to this contract
+    ) public payable onlyHost {
+        // Transfer NFT from host to this contract
         IERC721(nftAddress).transferFrom(msg.sender, address(this), _nftID);
 
         isListed[_nftID] = true;
         purchasePrice[_nftID] = _purchasePrice;
         escrowAmount[_nftID] = _escrowAmount;
-        buyer[_nftID] = _buyer;
+        guest[_nftID] = _guest;
     }
 
-    // Put Under Contract (only buyer - payable escrow)
-    function depositEarnest(uint256 _nftID) public payable onlyBuyer(_nftID) {
+    // Put Under Contract (only guest - payable escrow)
+    function depositEarnest(uint256 _nftID) public payable onlyGuest(_nftID) {
         require(msg.value >= escrowAmount[_nftID]);
     }
 
@@ -86,32 +86,38 @@ contract Escrow {
     // -> Require inspection status (add more items here, like appraisal)
     // -> Require sale to be authorized
     // -> Require funds to be correct amount
-    // -> Transfer NFT to buyer
-    // -> Transfer Funds to Seller
+    // -> Transfer NFT to guest
+    // -> Transfer Funds to host
     function finalizeSale(uint256 _nftID) public {
         require(inspectionPassed[_nftID]);
-        require(approval[_nftID][buyer[_nftID]]);
-        require(approval[_nftID][seller]);
+        require(approval[_nftID][guest[_nftID]]);
+        require(approval[_nftID][host]);
         require(approval[_nftID][lender]);
         require(address(this).balance >= purchasePrice[_nftID]);
 
         isListed[_nftID] = false;
 
-        (bool success, ) = payable(seller).call{value: address(this).balance}(
+        (bool success, ) = payable(host).call{value: address(this).balance}(
             ""
         );
         require(success);
 
-        IERC721(nftAddress).transferFrom(address(this), buyer[_nftID], _nftID);
+        IERC721(nftAddress).transferFrom(address(this), guest[_nftID], _nftID);
     }
 
     // Cancel Sale (handle earnest deposit)
-    // -> if inspection status is not approved, then refund, otherwise send to seller
+    // -> if inspection status is not approved, then refund, otherwise send to host
     function cancelSale(uint256 _nftID) public {
         if (inspectionPassed[_nftID] == false) {
-            payable(buyer[_nftID]).transfer(address(this).balance);
+            (bool success, ) = payable(guest[_nftID]).call{
+                value: address(this).balance
+            }("");
+            require(success, "Transfer failed.");
         } else {
-            payable(seller).transfer(address(this).balance);
+            (bool success, ) = payable(host).call{value: address(this).balance}(
+                ""
+            );
+            require(success, "Transfer failed.");
         }
     }
 
