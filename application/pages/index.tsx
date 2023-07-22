@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       <div className="bg-hero-image h-160 bg-cover justify-center items-center flex-col flex bg-center gap-3 rounded-full">
         <h1 className="text-6xl leading-11 text-center">
           Airbnb for the <br />
-          vibe economy
+          vibe economy{" "}
         </h1>
         <h4>Find places to stay with like-minded people.</h4>
         <Button variant="secondary">Start Browsing</Button>

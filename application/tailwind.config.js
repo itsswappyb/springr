@@ -64,6 +64,9 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
         full: "36px",
       },
+      fontFamily: {
+        overpass: ["Overpass Mono", "sans-serif"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },
