@@ -1,5 +1,6 @@
 import { Bed } from "@phosphor-icons/react";
 import Link from "next/link";
+import { Button } from "../@/components/ui/button";
 
 export function Nav() {
   return (
@@ -13,7 +14,9 @@ export function Nav() {
         </div>
 
         <div>
-          <Button> </Button>
+          <Button variant="default" size="sm">
+            Event
+          </Button>
         </div>
 
         <div className="flex gap-4 items-center"></div>

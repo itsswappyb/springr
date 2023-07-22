@@ -1,6 +1,6 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
-import { Button } from "../button";
 import { useState } from "react";
+import { Button } from "../../@/components/ui/button";
 
 export default function UserAuthentication() {
   // Example function to use user address on server-side function

@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { buttonVariants } from "@/components/button";
 import Link from "next/link";
 import WalletConnection from "@/components/demo/WalletConnection";
 import UserAuthentication from "@/components/demo/UserAuthentication";
@@ -32,23 +31,7 @@ const Home: NextPage = () => {
       <p className="text-xl text-muted-foreground">
         A collection of tools for Ethereum Virtual Machine (EVM) development.
       </p>
-      <div className="flex flex-row items-center gap-4 pt-6 pb-16 ">
-        <Link
-          className={buttonVariants({ variant: "default" })}
-          href="https://docs.evmkit.com"
-          target="_blank"
-        >
-          Get Started
-        </Link>
-
-        <Link
-          className={buttonVariants({ variant: "secondary" })}
-          href="https://github.com/jarrodwatts/evmkit"
-          target="_blank"
-        >
-          GitHub
-        </Link>
-      </div>
+      <div className="flex flex-row items-center gap-4 pt-6 pb-16 "></div>
 
       <div className="flex flex-col  md:flex-row w-full">
         <div className="flex flex-col items-start justify-start w-full md:w-96 pr-8">
