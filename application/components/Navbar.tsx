@@ -19,7 +19,7 @@ export function Nav() {
             Events
           </Button>
           <Button variant="default" size="sm">
-            Your Bookings
+            Your Listings
           </Button>
           <Button variant="default" size="sm">
             Your Bookings

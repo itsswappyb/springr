@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { useState } from "react";
 import WalletConnection from "@/components/demo/WalletConnection";
 import UserAuthentication from "@/components/demo/UserAuthentication";
 import DecentralizedStorage from "@/components/demo/DecentralizedStorage";
@@ -15,8 +14,6 @@ const tabs = [
 ];
 
 const Home: NextPage = () => {
-  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]>(tabs[0]);
-
   return (
     <div className="w-full x-auto pr-9 pl-9 relative mt-20 pb-24">
       <div className="bg-hero-image h-160 bg-cover justify-center items-center flex-col flex bg-center gap-3 rounded-full">
