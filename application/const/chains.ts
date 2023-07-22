@@ -5,11 +5,11 @@
  * The CHAIN export changes depending on what environment you are in.
  */
 
-import { Polygon, Mumbai } from "@thirdweb-dev/chains";
+import { Polygon, Mumbai, Sepolia } from "@thirdweb-dev/chains";
 
 export const IS_DEV_ENV = process.env.NODE_ENV === "development";
 
-const DEVELOPMENT_CHAIN = Mumbai; // e.g. Mumbai used for local development
+const DEVELOPMENT_CHAIN = Sepolia; // e.g. Sepolia used for local development
 const PRODUCTION_CHAIN = Polygon; // e.g. Polygon used for production
 
 export const CHAIN = IS_DEV_ENV ? DEVELOPMENT_CHAIN : PRODUCTION_CHAIN;

@@ -3,8 +3,12 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { buttonVariants } from "./ui/button";
+import { useRouter } from "next/router";
+import { use } from "react";
 
 export function Nav() {
+  const router = useRouter();
+
   return (
     <div className="w-full flex justify-between fixed top-0 left-0 z-50">
       <nav className="flex items-center justify-between w-full py-5 x-auto pr-9 pl-9">
@@ -16,17 +20,27 @@ export function Nav() {
         </div>
 
         <div className="gap-4 flex">
-          <Link
-            href={"/events"}
-            className={buttonVariants({ variant: "default" })}
+          {/* TODO: change to Links */}
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/events")}
           >
             Events
-          </Link>
-          <Button variant="default" size="sm">
-            Your Listings
           </Button>
-          <Button variant="default" size="sm">
-            Your Bookings
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/listings")}
+          >
+            Listings
+          </Button>
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/bookings")}
+          >
+            Bookings
           </Button>
         </div>
 
