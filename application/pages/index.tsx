@@ -5,6 +5,7 @@ import DecentralizedStorage from "@/components/demo/DecentralizedStorage";
 import ContractInteraction from "@/components/demo/ContractInteraction";
 import { EventCard } from "../components/EventCard";
 import { Button } from "@/components/ui/button";
+import { set } from "zod";
 
 const tabs = [
   { name: "Wallet Connection", component: <WalletConnection /> },
