@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]>(tabs[0]);
 
   return (
-    <div className="w-full x-auto pr-9 pl-9 relative mt-24">
+    <div className="w-full x-auto pr-9 pl-9 relative mt-20 pb-24">
       <div className="bg-hero-image h-160 bg-cover justify-center items-center flex-col flex bg-center gap-3 rounded-full">
         <h1 className="text-6xl leading-11 text-center">
           Airbnb for the <br />
@@ -27,6 +27,8 @@ const Home: NextPage = () => {
         <h4>Find places to stay with like-minded people.</h4>
         <Button variant="secondary">Start Browsing</Button>
       </div>
+
+      <EventCard />
     </div>
   );
 };

@@ -9,21 +9,32 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import Image from "next/image";
 
 export function EventCard() {
   return (
-    <Card className="w-[350px] rounded-3xl">
-      <CardHeader>
+    <Card className="w-[350px] h-[500px] rounded-3xl bg-hero-image bg-cover">
+      {/* Card Image */}
+      {/* TO DO: Populate background image with event.image props */}
+      <div className="b h-96  rounded-t-3xl"></div>
+      {/* Card Details */}
+      <CardDescription className="flex flex-col w-full">
+        {/* Title and Flag */}
+        <div className="flex justify-between px-4">
+          <h2>ETH Global Paris</h2>
+          <p>🇫🇷</p>
+        </div>
+        {/* Event type, date and icon */}
+        <div className="flex justify-between px-4">
+          <div className="text-uppercase">Hackathon</div>
+          <p>JUl 23-24TH</p>
+        </div>
+      </CardDescription>
+    </Card>
+  );
+}
+
+{
+  /* <CardHeader>
         <CardTitle>Create project</CardTitle>
         <CardDescription>Deploy your new project in one-click.</CardDescription>
       </CardHeader>
@@ -54,7 +65,5 @@ export function EventCard() {
       <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
         <Button>Deploy</Button>
-      </CardFooter>
-    </Card>
-  );
+      </CardFooter> */
 }
