@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "ETH Global Paris",
+    "location": "Paris, France",
+    "flag": "🇫🇷",
+    "date": "JUL 21-23RD",
+    "image": "/ETHGlobalParis.png",
+    "description": "Paris, the city of lights and the birthplace of revolutions, is at the forefront of Web3 innovation. This July, a global community of developers, designers, creators, and thinkers committed to shaping the decentralized future are coming together for ETHGlobal Paris - a hackathon weekend to foster creativity and collaboration on the Ethereum ecosystem, bringing together builders from all around the globe.Here at the beautiful Palais Brongniart, hackers can attend talks and workshops, receive valuable feedback from the leading teams",
+    "type": "hackathon"
+  },
+  {
+    "id": 2,
+    "name": "ETH Mexico",
+    "location": "Mexico City, Mexico",
+    "flag": "🇲🇽",
+    "date": "SEP 22-24TH",
+    "image": "/ETHMexico.png",
+    "description": "ETHMexico is an event bringing together some of the top minds and experts in Ethereum and ETHGlobal's return to Latin America. ",
+    "type": "hackathon"
+  },
+  {
+    "id": 3,
+    "name": "ETH Global Istanbul",
+    "location": "Istanbul, Turkey",
+    "flag": "🇹🇷",
+    "date": "NOV 17-19TH",
+    "image": "/ETHIstanbul.png",
+    "description": "Join us in Istanbul May 26th–28th for a weekend hackathon like no other. Get hype to build the future of web3 with thousands of developers and creatives in one.",
+    "type": "hackathon"
+  },
+  {
+    "id": 4,
+    "name": "Pragma New York",
+    "location": "New York, USA",
+    "flag": "🇺🇸",
+    "date": "NOV 17-19TH",
+    "image": "/PragmaNewYork.png",
+    "description": "Pragma New York is an event bringing together some of the top minds and experts in Ethereum and ETHGlobal's return to in-person hackathons since 2020.",
+    "type": "conference"
+  },
+  {
+    "id": 5,
+    "name": "ETH Milan",
+    "location": "Milan, Italy",
+    "flag": "🇮🇹",
+    "date": "OCT 5-6",
+    "image": "/ETHMilan.png",
+    "description": "EthMilan is the largest Web3 conference in Milan that will take place on October 5-6 2023 at Palazzo delle Stelline.",
+    "type": "conference"
+  },
+  {
+    "id": 6,
+    "name": "Token2049",
+    "location": "Singapore, Singapore",
+    "flag": "🇸🇬",
+    "date": "OCT 5-6",
+    "image": "/Token2049.png",
+    "description": "The Premier Crypto Event in Asia. We bring together the leading voices in crypto.",
+    "type": "conference"
+  }
+]

@@ -4,6 +4,7 @@ import WalletConnection from "@/components/demo/WalletConnection";
 import UserAuthentication from "@/components/demo/UserAuthentication";
 import DecentralizedStorage from "@/components/demo/DecentralizedStorage";
 import ContractInteraction from "@/components/demo/ContractInteraction";
+import { EventCard } from "../components/EventCard";
 
 const tabs = [
   { name: "Wallet Connection", component: <WalletConnection /> },
@@ -17,7 +18,9 @@ const Home: NextPage = () => {
 
   return (
     <div className="w-full x-auto pr-9 pl-9 relative mt-24">
-      <div className="bg-hero-image h-160 bg-cover bg-center rounded-full"></div>
+      <div className="bg-hero-image h-160 bg-cover flex-col flex bg-center rounded-full">
+        <h1>Airbnb for the vibe economy</h1>
+      </div>
     </div>
   );
 };

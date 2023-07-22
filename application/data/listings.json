@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "location": "Mexico City, Mexico",
+    "firstName": "Pablo",
+    "date": "JUL 21-23RD",
+    "conference": "ETH Mexico",
+    "address": "Calle Campeche 280, Colonia Condesa, 06140 Ciudad de México, CDMX, Mexico",
+    "image": "/PabloListing.png",
+    "price": "Free",
+    "description": "Discover the vibrant heart of Mexico City with our stylish and cozy room. Located in the bustling neighborhoods, our space offers a perfect blend of local charm, modern amenities, and easy access to the city's rich cultural attractions, making it an ideal choice for a memorable stay.",
+    "type": "single room"
+  },
+  {
+    "id": 2,
+    "location": "Paris, France",
+    "firstName": "Joaquim",
+    "date": "JUL 18-24TH",
+    "conference": "ETH Global Paris",
+    "address": "10 Rue Agrippa d'Aubigné, 75004 Paris",
+    "image": "/JoaquimListing.png",
+    "price": "1ETH",
+    "description": "Indulge in the romantic ambiance of Paris with our elegantly furnished bedroom. Located in a charming neighborhood, our cozy space offers a delightful blend of comfort and Parisian charm, providing the perfect retreat after exploring the city's iconic landmarks and savoring its culinary delights",
+    "type": "single room"
+  },
+  {
+    "id": 3,
+    "location": "Istanbul, Turkey",
+    "firstName": "Angela",
+    "date": "NOV 16-19TH",
+    "conference": "ETH Global Istanbul",
+    "address": "İstiklal Avenue 34435, Beyoğlu, Istanbul, Turkey",
+    "image": "/AngelaListing.png",
+    "price": "0.7ETH",
+    "description": "Experience the allure of Istanbul from our charming room with captivating city views. Nestled in the heart of this enchanting metropolis, our cozy space offers modern comforts and a convenient location, perfect for immersing yourself in the vibrant culture and historical wonders of Istanbul.",
+    "type": "entire place"
+  },
+  {
+    "id": 4,
+    "location": "Mexico City, Mexico",
+    "firstName": "Carla",
+    "date": "JUL 21-23RD",
+    "conference": "ETH Mexico",
+    "address": "Calle Campeche 280, Colonia Condesa, 06140 Ciudad de México, CDMX, Mexico",
+    "image": "/PabloListing.png",
+    "price": "1ETH",
+    "description": "Escape to a stylish retreat in the heart of Mexico City with our entire place Airbnb. This spacious and modern accommodation offers a seamless blend of contemporary design and local flair, providing a comfortable haven to explore the city's cultural treasures and culinary delights.",
+    "type": "entire place"
+  },
+  {
+    "id": 5,
+    "location": "Singapore, Singapore",
+    "firstName": "Hector",
+    "date": "OCT 4-6TH",
+    "conference": "Token2049",
+    "address": "10 Anson Road, International Plaza, Singapore 079903",
+    "image": "/HectorListing.png",
+    "price": "$30",
+    "description": "88 Raffles Quay, Singapore 048581.",
+    "type": "couch"
+  },
+  {
+    "id": 6,
+    "location": "Milan, Italy",
+    "firstName": "Josefin",
+    "date": "OCT 4-6TH",
+    "conference": "Token2049",
+    "address": "10 Anson Road, International Plaza, Singapore 079903",
+    "image": "/HectorListing.png",
+    "price": "€20",
+    "description": "88 Raffles Quay, Singapore 048581.",
+    "type": "couch"
+  }
+]
