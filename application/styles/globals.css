@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Overpass+Mono:wght@300;400;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 224 71% 4%;
+    --background: 0 0% 92%;
     --foreground: 213 31% 91%;
 
     --muted: 223 47% 11%;
@@ -25,8 +27,9 @@
     --secondary: 222.2 47.4% 11.2%;
     --secondary-foreground: 210 40% 98%;
 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
+    /* Springer Light Blue */
+    --accent: 222 57% 65%;
+    --accent-foreground: 216 87% 45%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
@@ -35,11 +38,12 @@
 
     --radius: 0.5rem;
 
-    font-family: "Inter", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
   }
 
   .light {
-    --background: 0 0% 100%;
+    /* Washed white */
+    --background: 0 0% 92%;
     --foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -48,7 +52,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
-    --card: 0 0% 100%;
+    /* Card White Bg */
+    --card: 0 0% 95%;
     --card-foreground: 222.2 47.4% 11.2%;
 
     --border: 214.3 31.8% 91.4%;
