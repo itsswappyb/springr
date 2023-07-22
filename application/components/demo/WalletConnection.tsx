@@ -10,7 +10,6 @@ import {
   walletConnect,
 } from "@thirdweb-dev/react";
 import React, { useState } from "react";
-import { Checkbox } from "../checkbox";
 
 type Props = {};
 
@@ -40,37 +39,6 @@ export default function WalletConnection({}: Props) {
 
   return (
     <div className="mb-4 flex flex-col items-start flex-wrap">
-      <p className="text-sm text-muted-foreground">
-        1. Select connection options:
-      </p>
-      <div className="flex flex-row items-center gap-4 pt-4 pb-4 w-full mb-4 flex-wrap">
-        {Object.keys(options).map((option) => (
-          <div key={option} className="flex gap-x-2 items-center ">
-            <Checkbox
-              id="terms"
-              onCheckedChange={(checked) => {
-                if (checked) {
-                  setSelectedOptions([...selectedOptions, option]);
-                } else {
-                  setSelectedOptions(
-                    selectedOptions.filter((o) => o !== option)
-                  );
-                }
-              }}
-              checked={selectedOptions.includes(option)}
-            />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              {option}
-            </label>
-          </div>
-        ))}
-      </div>
-
-      <p className="text-sm text-muted-foreground pb-2">2. View the result:</p>
-
       <ThirdwebProvider
         supportedWallets={
           selectedOptions.length === 0

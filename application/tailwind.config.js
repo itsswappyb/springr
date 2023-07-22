@@ -52,10 +52,17 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundImage: {
+        "hero-image": "url('/hero-image.jpg')",
+      },
+      height: {
+        160: "43rem",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        full: "36px",
       },
       keyframes: {
         "accordion-down": {
