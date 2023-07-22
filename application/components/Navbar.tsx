@@ -2,8 +2,12 @@ import { Bed } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ConnectWallet } from "@thirdweb-dev/react";
+import { useRouter } from "next/router";
+import { use } from "react";
 
 export function Nav() {
+  const router = useRouter();
+
   return (
     <div className="w-full flex justify-between fixed top-0 left-0 z-50">
       <nav className="flex items-center justify-between w-full max-w-7xl py-5 x-auto pr-9 pl-9">
@@ -15,14 +19,27 @@ export function Nav() {
         </div>
 
         <div className="gap-4 flex">
-          <Button variant="default" size="sm">
+          {/* TODO: change to Links */}
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/events")}
+          >
             Events
           </Button>
-          <Button variant="default" size="sm">
-            Your Bookings
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/listings")}
+          >
+            Listings
           </Button>
-          <Button variant="default" size="sm">
-            Your Bookings
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/bookings")}
+          >
+            Bookings
           </Button>
         </div>
 
