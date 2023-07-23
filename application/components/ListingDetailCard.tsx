@@ -9,15 +9,21 @@ import { Label } from "@radix-ui/react-label";
 import { Checkbox } from "./ui/checkbox";
 import Image from "next/image";
 
-export function ListingDetail() {
+type Props = {
+  nftCount: number;
+};
+
+export function ListingDetailCard(props: Props) {
+  const { nftCount } = props;
+
   return (
     <Card className="w-[900px] h-full border-none rounded-3xl p-6 bg-black flex flex-col justify-end drop-shadow-md">
-      {/* Save and exit btn */}
+      {/* Save and exit btn
       <div className="w-full flex justify-end">
         <Button variant="secondary" size="sm" className="border-white border">
           Save and exit
         </Button>
-      </div>
+      </div> */}
 
       {/* Modal title and description */}
       <div className="w-full text-center">

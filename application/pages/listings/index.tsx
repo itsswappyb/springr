@@ -1,6 +1,9 @@
 import React from "react";
 import { useQuery } from "@airstack/airstack-react";
 import { useAddress } from "@thirdweb-dev/react";
+import Link from "next/link";
+import { ListingCard } from "@/components/ListingCard";
+import { buttonVariants } from "@/components/ui/button";
 
 const Listings = () => {
   const query = `query tokens($address: Identity!) {
@@ -137,8 +140,24 @@ const Listings = () => {
   console.log("data:", data);
   console.log("vitalikData:", vitalikData);
   return (
-    <div>
-      <h3>Listings page</h3>
+    <div className="p-24">
+      <div className="flex justify-between items-center">
+        <h3 className="text-accent text-center">All Events</h3>
+        <Link
+          href="/add-listing"
+          className={buttonVariants({ variant: "default" })}
+        >
+          Add Listing
+        </Link>
+      </div>
+
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Link href={`/listings/1`}>
+            <ListingCard />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
