@@ -13,7 +13,7 @@ export function ListingCard() {
       <div className="flex flex-col w-full p-4 gap-2 rounded-b-3xl bg-secondary-foreground text-black">
         {/* Title */}
         <div className="flex justify-between align-middle">
-          <h2 className="text-2xl">Stay with Joaquim</h2>
+          <h2 className="text-2xl">Stay with Vitalik</h2>
         </div>
         {/* Date */}
         <p className="font-overpass uppercase">jul 23-24TH</p>

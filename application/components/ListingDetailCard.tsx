@@ -11,10 +11,11 @@ import Image from "next/image";
 
 type Props = {
   nftCount: number;
+  nftData: any;
 };
 
 export function ListingDetailCard(props: Props) {
-  const { nftCount } = props;
+  const { nftCount, nftData } = props;
 
   return (
     <Card className="w-[900px] h-full border-none rounded-3xl p-6 bg-black flex flex-col justify-end drop-shadow-md">
@@ -33,13 +34,13 @@ export function ListingDetailCard(props: Props) {
       <hr className="border-white my-5" />
 
       <div className="flex items-center flex-col gap-4">
-        <h2 className="text-2xl">Joaquim's Place</h2>
+        <h2 className="text-2xl">Vitalik's Place</h2>
         <h2 className="text-2xl font-overpass">Paris, France</h2>
         <Image
-          src="/JoaquimListing.png"
+          src="/VitalikListing.png"
           height={350}
           width={350}
-          alt="Joaquim listing"
+          alt="Vitalik listing"
         ></Image>
 
         {/* Host Details */}
@@ -48,7 +49,8 @@ export function ListingDetailCard(props: Props) {
             Host: <span className="font-bold">Napolean Bonaparte</span>
           </h2>
           <h2>Vibe Check</h2>
-          {/* TO DO: Insert matching NFTs */}
+          <p>+{nftCount?.toString()}</p>
+          {/* TODO: Insert matching NFTs */}
         </div>
       </div>
     </Card>

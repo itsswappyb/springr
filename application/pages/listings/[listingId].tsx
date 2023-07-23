@@ -95,9 +95,18 @@ const ListingDetail = () => {
     cache: false,
   });
 
+  console.log("vitalikData:", vitalikData);
+
+  const nftData =
+    vitalikData && vitalikData?.poap?.data?.map((p: any, i: number) => i !== 0);
+
+  const nftCount = nftData?.length;
+
+  console.log("nftCount: ", nftCount);
+
   return (
     <div className="p-24 flex justify-center">
-      <ListingDetailCard />
+      <ListingDetailCard nftCount={nftCount} nftData={nftData} />
     </div>
   );
 };
