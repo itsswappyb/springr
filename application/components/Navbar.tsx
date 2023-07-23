@@ -26,7 +26,10 @@ export function Nav() {
           </Button>
         </div>
 
-        <ConnectWallet />
+        <ConnectWallet
+          className="bg-accent-foreground text-white hover:scale-110 duration-75"
+          theme="light"
+        />
       </nav>
     </div>
   );
