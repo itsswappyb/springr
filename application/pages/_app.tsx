@@ -5,6 +5,9 @@ import Head from "next/head";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Footer } from "@/components/Footer";
+import { init } from "@airstack/airstack-react";
+
+init(process.env.NEXT_PUBLIC_AIRSTACK_KEY as string);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

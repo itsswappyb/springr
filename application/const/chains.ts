@@ -12,4 +12,5 @@ export const IS_DEV_ENV = process.env.NODE_ENV === "development";
 const DEVELOPMENT_CHAIN = Sepolia; // e.g. Sepolia used for local development
 const PRODUCTION_CHAIN = Polygon; // e.g. Polygon used for production
 
-export const CHAIN = IS_DEV_ENV ? DEVELOPMENT_CHAIN : PRODUCTION_CHAIN;
+// export const CHAIN = IS_DEV_ENV ? DEVELOPMENT_CHAIN : PRODUCTION_CHAIN;
+export const CHAIN = PRODUCTION_CHAIN;
