@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Card, CardDescription } from "./ui/card";
+import { Card } from "./ui/card";
 import { ArrowCircleRight } from "@phosphor-icons/react";
 
 export function ListingCard() {
