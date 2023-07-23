@@ -1,6 +1,7 @@
 import React from "react";
 import { EventCard } from "@/components/EventCard";
 import events from "@/data/events.json";
+import Link from "next/link";
 
 const Events = () => {
   return (
@@ -9,7 +10,9 @@ const Events = () => {
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((event, idx) => (
-            <EventCard key={idx} event={event} />
+            <Link href={`/events/${event.id}`} key={idx}>
+              <EventCard event={event} />
+            </Link>
           ))}
         </div>
       </div>
