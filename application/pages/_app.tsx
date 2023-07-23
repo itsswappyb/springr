@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Footer } from "@/components/Footer";
 import { init } from "@airstack/airstack-react";
+import { LitProvider } from "../hooks/useLit";
 
 init(process.env.NEXT_PUBLIC_AIRSTACK_KEY as string);
 
@@ -28,9 +29,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             authUrl: "/api/auth", // API Route (default is - pages/api/auth/[...thirdweb].ts)
           }}
         >
-          <Nav />
-          <Component {...pageProps} />
-          <Footer />
+          <LitProvider>
+            <Nav />
+            <Component {...pageProps} />
+            <Footer />
+          </LitProvider>
         </ThirdwebProvider>
       </main>
     </div>
