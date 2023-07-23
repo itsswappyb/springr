@@ -2,6 +2,7 @@ import { Bed } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ConnectWallet } from "@thirdweb-dev/react";
+import { buttonVariants } from "./ui/button";
 
 export function Nav() {
   return (
@@ -15,9 +16,12 @@ export function Nav() {
         </div>
 
         <div className="gap-4 flex">
-          <Button variant="default" size="sm">
+          <Link
+            href={"/events"}
+            className={buttonVariants({ variant: "default" })}
+          >
             Events
-          </Button>
+          </Link>
           <Button variant="default" size="sm">
             Your Listings
           </Button>
