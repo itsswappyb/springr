@@ -7,7 +7,6 @@ import ContractInteraction from "@/components/demo/ContractInteraction";
 import { set } from "zod";
 import { EventCard } from "../components/EventCard";
 import { Button, buttonVariants } from "@/components/ui/button";
-
 import Link from "next/link";
 
 const tabs = [
